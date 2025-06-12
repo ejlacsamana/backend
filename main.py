@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from models import Workout
 from database import init_db
 import sqlite3
@@ -7,6 +9,9 @@ import sqlite3
 app = FastAPI()
 init_db()
 
+
+# Mount static files
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Allow frontend to access backend (adjust origins if needed later)
 app.add_middleware(
@@ -38,3 +43,7 @@ def add_workout (workout: Workout):
 @app.get("/api/hello")
 def read_hello():
     return {"message": "Hello from backend"}
+
+@app.get("/")
+def read_index():
+    return FileResponse("static/index.html")
