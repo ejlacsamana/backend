@@ -34,3 +34,7 @@ def add_workout (workout: Workout):
     conn.commit()
     conn.close()
     return {"message": "Workout saved succcessfully!"}
+
+@app.get("/api/hello")
+def read_hello():
+    return {"message": "Hello from backend"}
