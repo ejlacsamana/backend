@@ -11,7 +11,7 @@ init_db()
 
 
 # Mount static files
-app.mount("/static", StaticFiles(directory="static"), name="static")
+# app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Allow frontend to access backend (adjust origins if needed later)
 app.add_middleware(
